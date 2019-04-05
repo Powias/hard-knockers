@@ -1,3 +1,14 @@
+/*
+This is the so-called Game Of Life. 
+Idea is as follows.
+You live out each day. Each day has x events you can complete. Work, sleep, exercise, etc.
+Everything imposes realistic constraints. Cars break down with specific faults.
+You get sick. Certain sicknesses don't get detected by doctors, etc.
+Right now, I have begun work on a banking system that I want to get just right before I proceed.
+Plans to impose a woman class with private methods in the future.
+*/
+
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -22,7 +33,7 @@ public:
 	void seteventcount(int eventcount) {this->eventcount = eventcount;}
 };
 
-
+// simple probability functions: returns a "roll" between 0 and 1.
 double uniform(double lower = 0.0, double higher = 1.0)
 {
 	// impose a random seed every single time
@@ -33,11 +44,13 @@ double uniform(double lower = 0.0, double higher = 1.0)
 	return roll;
 }
 
+// this one's gaussian but i'm too lazy to look at the documentation yet
 double normal(double mean = 0.5, double stddev = 0.1)
 {
 	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
 }
 
+// mode of transportation: will extend into cheeky brands that represent ford and toyota and what not
 class car
 {
 private:
@@ -69,6 +82,11 @@ public:
 	void setappeal(int appeal) {this->appeal = appeal;}
 }
 
+// master class (i guess)
+// idea is as follows: class bank -> class bankaccount -> class specificaccount
+// where you can create a bank object, say WellsFargo and create accounts within it that retain properties of WellsFargo
+// reason why I did a general bankaccount class is because a lot of financial accounts
+// have the same qualities (i.e. apy, accountnumber, whatever)
 class bank
 {
 private:
@@ -142,6 +160,7 @@ class checking : public bankaccount
 
 int creditscore;
 
+// credit will be a little tricky since
 class plastic : public bankaccount //credit card
 {
 private:
@@ -174,6 +193,8 @@ class loan : public bankaccount
 
 };
 
+// don't worry about this
+// i wrote this while drinking
 void bankinstance(void)
 {
 	// set bankname randomly
